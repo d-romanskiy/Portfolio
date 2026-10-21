@@ -1,0 +1,504 @@
+/* =====================================================================
+   Каркас сторінки: шапка, герой, секції, підвал
+   ===================================================================== */
+
+/* --- Прогрес прокручування ----------------------------------------- */
+.scroll-progress {
+    position: fixed;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 2px;
+    z-index: calc(var(--z-header) + 5);
+    background: transparent;
+    pointer-events: none;
+}
+
+.scroll-progress__bar {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, var(--amber-500), var(--amber-300));
+    transform-origin: 0 50%;
+    transform: scaleX(0);
+}
+
+/* --- Шапка ---------------------------------------------------------- */
+.header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: var(--z-header);
+    height: var(--header-h);
+    display: flex;
+    align-items: center;
+    transition: background var(--t-base) var(--ease-out),
+                box-shadow var(--t-base) var(--ease-out),
+                backdrop-filter var(--t-base) var(--ease-out);
+}
+
+.header::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(251, 248, 243, 0.86);
+    backdrop-filter: blur(18px) saturate(1.4);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    border-bottom: 1px solid var(--border);
+    opacity: 0;
+    transition: opacity var(--t-base) var(--ease-out);
+    z-index: -1;
+}
+
+.header.is-stuck::after {
+    opacity: 1;
+}
+
+/* Поки шапка ще прозора — вона лежить поверх темного героя,
+   тому логотип і меню мають бути світлими. */
+.header:not(.is-stuck) .logo {
+    color: var(--sand-50);
+}
+
+.header:not(.is-stuck) .logo__tag {
+    color: rgba(243, 237, 226, 0.6);
+}
+
+.header:not(.is-stuck) .nav__link {
+    color: rgba(243, 237, 226, 0.8);
+}
+
+.header:not(.is-stuck) .nav__link:hover,
+.header:not(.is-stuck) .nav__link.is-active {
+    color: var(--white);
+}
+
+.header__inner {
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+}
+
+/* Логотип */
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    flex: none;
+    padding-block: 6px;
+    color: var(--text);
+    transition: color var(--t-base) var(--ease-out);
+}
+
+.logo__mark {
+    width: auto;
+    height: 36px;
+    flex: none;
+    object-fit: contain;
+}
+
+.logo__text {
+    display: grid;
+    line-height: 1;
+}
+
+.logo__name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.98rem;
+    letter-spacing: 0.04em;
+}
+
+.logo__tag {
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    margin-top: 4px;
+}
+
+/* Навігація */
+.nav {
+    margin-left: auto;
+    display: none;
+}
+
+.nav__list {
+    display: flex;
+    align-items: center;
+    gap: clamp(2px, 1.1vw, 14px);
+}
+
+.nav__link {
+    position: relative;
+    display: inline-block;
+    padding: 10px 12px;
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    color: var(--text-muted);
+    border-radius: var(--r-sm);
+    transition: color var(--t-fast) var(--ease-out);
+    white-space: nowrap;
+}
+
+.nav__link::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 4px;
+    height: 1.5px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform var(--t-base) var(--ease-out);
+}
+
+.nav__link:hover,
+.nav__link.is-active {
+    color: var(--text);
+}
+
+.nav__link:hover::after,
+.nav__link.is-active::after {
+    transform: scaleX(1);
+}
+
+.header__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-left: auto;
+}
+
+@media (min-width: 1060px) {
+    .header__actions {
+        margin-left: var(--space-5);
+    }
+
+    .nav {
+        display: block;
+    }
+}
+
+/* --- Герой ---------------------------------------------------------- */
+.hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: calc(var(--header-h) + 40px);
+    padding-bottom: clamp(28px, 4vw, 56px);
+    overflow: clip;
+    background: var(--ink-900);
+    color: var(--dark-text);
+    isolation: isolate;
+}
+
+.hero__media {
+    position: absolute;
+    inset: -6% 0 0;
+    z-index: -2;
+}
+
+.hero__media img {
+    width: 100%;
+    height: 106%;
+    object-fit: cover;
+    object-position: 50% 42%;
+    will-change: transform;
+}
+
+.hero__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(180deg, rgba(10, 10, 8, 0.72) 0%, rgba(10, 10, 8, 0.18) 34%, rgba(10, 10, 8, 0.55) 70%, rgba(10, 10, 8, 0.92) 100%),
+        linear-gradient(96deg, rgba(10, 10, 8, 0.68) 0%, rgba(10, 10, 8, 0.05) 62%);
+}
+
+.hero__inner {
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+    display: grid;
+    gap: clamp(28px, 4vw, 52px);
+}
+
+.hero__eyebrow {
+    color: var(--amber-400);
+    font-size: var(--fs-eyebrow);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+}
+
+.hero__eyebrow span {
+    position: relative;
+}
+
+.hero__eyebrow span + span::before {
+    content: "";
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: currentColor;
+    transform: translateY(-50%);
+}
+
+.hero__title {
+    max-width: 16ch;
+    text-shadow: 0 2px 30px rgba(0, 0, 0, 0.35);
+}
+
+.hero__title em {
+    font-style: normal;
+    color: var(--amber-400);
+}
+
+.hero__bottom {
+    display: grid;
+    gap: clamp(24px, 3vw, 40px);
+    align-items: end;
+}
+
+@media (min-width: 900px) {
+    .hero__bottom {
+        grid-template-columns: minmax(0, 1fr) auto;
+    }
+}
+
+.hero__text {
+    max-width: 56ch;
+    font-size: var(--fs-lead);
+    line-height: 1.55;
+    color: rgba(243, 237, 226, 0.86);
+}
+
+.hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+}
+
+.hero__stats {
+    border-top: 1px solid rgba(243, 237, 226, 0.22);
+    padding-top: clamp(20px, 2.5vw, 30px);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(18px, 3vw, 40px);
+}
+
+@media (min-width: 780px) {
+    .hero__stats {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+.stat__value {
+    font-family: var(--font-display);
+    font-size: clamp(1.7rem, 3.4vw, 2.8rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--white);
+}
+
+.stat__value sup {
+    font-size: 0.5em;
+    vertical-align: super;
+    color: var(--amber-400);
+}
+
+.stat__label {
+    margin-top: 10px;
+    font-size: var(--fs-xs);
+    line-height: 1.4;
+    color: rgba(243, 237, 226, 0.62);
+}
+
+.hero__scroll {
+    position: absolute;
+    right: var(--gutter);
+    bottom: clamp(28px, 4vw, 56px);
+    display: none;
+    align-items: center;
+    gap: 10px;
+    font-size: var(--fs-xs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(243, 237, 226, 0.6);
+    writing-mode: vertical-rl;
+}
+
+@media (min-width: 1200px) {
+    .hero__scroll {
+        display: flex;
+    }
+}
+
+/* --- Рухомий рядок -------------------------------------------------- */
+.ticker {
+    background: var(--ink-900);
+    color: var(--sand-100);
+    padding-block: clamp(14px, 1.6vw, 22px);
+    overflow: hidden;
+    border-block: 1px solid rgba(243, 237, 226, 0.12);
+}
+
+.ticker__track {
+    display: flex;
+    width: max-content;
+    gap: clamp(28px, 4vw, 64px);
+    animation: ticker-scroll 44s linear infinite;
+}
+
+.ticker:hover .ticker__track {
+    animation-play-state: paused;
+}
+
+.ticker__item {
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(28px, 4vw, 64px);
+    font-family: var(--font-display);
+    font-size: clamp(0.95rem, 1.5vw, 1.25rem);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+}
+
+.ticker__item::after {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--amber-500);
+    flex: none;
+}
+
+/* --- Підвал --------------------------------------------------------- */
+.footer {
+    background: var(--ink-900);
+    color: var(--dark-text);
+    padding-top: clamp(56px, 7vw, 96px);
+    padding-bottom: var(--space-7);
+}
+
+.footer__grid {
+    display: grid;
+    gap: clamp(36px, 5vw, 64px);
+}
+
+@media (min-width: 680px) {
+    .footer__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1040px) {
+    .footer__grid {
+        grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+    }
+}
+
+.footer__brand .logo {
+    color: var(--dark-text);
+}
+
+.footer__brand .logo__tag {
+    color: var(--dark-muted);
+}
+
+.footer__about {
+    margin-top: var(--space-5);
+    max-width: 44ch;
+    color: var(--dark-muted);
+    font-size: var(--fs-sm);
+}
+
+.footer__title {
+    font-family: var(--font-body);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--amber-400);
+    margin-bottom: var(--space-4);
+}
+
+.footer__list {
+    display: grid;
+    gap: 2px;
+    font-size: var(--fs-sm);
+    color: var(--dark-muted);
+}
+
+.footer__list li {
+    padding-block: 5px;
+}
+
+/* Достатня зона натискання для пальця на сенсорних екранах */
+.footer__list a {
+    display: inline-block;
+    padding-block: 10px;
+    margin-block: -10px;
+    transition: color var(--t-fast) var(--ease-out);
+}
+
+.footer__list a:hover {
+    color: var(--amber-400);
+}
+
+.footer__list--social a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer__list--social svg {
+    flex: none;
+    color: var(--amber-400);
+    transition: transform var(--t-fast) var(--ease-out);
+}
+
+.footer__list--social a:hover svg {
+    transform: scale(1.12);
+}
+
+.footer__bottom {
+    margin-top: clamp(40px, 5vw, 72px);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--dark-border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4) var(--space-6);
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--fs-xs);
+    color: rgba(243, 237, 226, 0.5);
+}
+
+/* Третя кнопка героя — калькулятор: на широкому екрані окремим рядком під двома
+   першими, щоб блок кнопок не з'їдав ширину тексту ліворуч */
+@media (min-width: 900px) {
+    .hero__bottom .hero__cta {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+
+    .hero__calc {
+        grid-column: 1 / -1;
+        justify-content: center;
+    }
+}

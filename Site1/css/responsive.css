@@ -1,0 +1,596 @@
+/* =====================================================================
+   Адаптація: планшет і смартфон
+   Мобільна база вже закладена в компонентах — тут точкові виправлення.
+   ===================================================================== */
+
+/* --- Планшет (≤ 1060px) --------------------------------------------- */
+@media (max-width: 1060px) {
+    .hero {
+        min-height: 92svh;
+    }
+
+    .hero__title {
+        max-width: 14ch;
+    }
+
+    .modal__dialog {
+        border-radius: var(--r-lg);
+    }
+}
+
+/* --- Планшет / великий телефон (≤ 900px) ----------------------------- */
+@media (max-width: 900px) {
+    /* На вузьких екранах анімація появи йде лише по вертикалі —
+       горизонтальний зсув до появи розширював документ. */
+    [data-reveal="left"],
+    [data-reveal="right"] {
+        transform: translateY(26px);
+    }
+
+    .figure-stack {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .case__media {
+        aspect-ratio: 16 / 10;
+    }
+
+    .modal__body {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .gallery__stage {
+        aspect-ratio: 4 / 3;
+    }
+}
+
+/* --- Телефон (≤ 640px) ----------------------------------------------- */
+@media (max-width: 640px) {
+    :root {
+        --section-y: 64px;
+    }
+
+    .hero {
+        min-height: 100svh;
+        padding-bottom: 28px;
+    }
+
+    .hero__title {
+        max-width: 100%;
+    }
+
+    .hero__stats {
+        gap: 16px 20px;
+    }
+
+    .stat__label {
+        margin-top: 6px;
+    }
+
+    .logo__tag {
+        display: none;
+    }
+
+    /* Шапка на телефоні: меню + логотип + «Зв'язок» в один рядок */
+    .header__inner {
+        gap: 10px;
+    }
+
+    .logo {
+        min-width: 0;
+    }
+
+    .logo__mark {
+        width: auto;
+        height: 30px;
+    }
+
+    .logo__name {
+        font-size: 0.85rem;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+    }
+
+    .header__actions {
+        gap: 8px;
+        flex: none;
+    }
+
+    /* Кнопка «Зв'язок» лишається в шапці, але компактніша */
+    .header__actions .btn {
+        min-height: 42px;
+        padding: 9px 14px;
+        font-size: var(--fs-xs);
+    }
+
+    .filters__meta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .sort {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .modal {
+        padding: 0;
+    }
+
+    .modal__dialog {
+        border-radius: 0;
+        max-height: 100svh;
+        height: 100svh;
+    }
+
+    .gallery__stage {
+        aspect-ratio: 3 / 2;
+    }
+
+    .gallery__nav {
+        width: 42px;
+        height: 42px;
+    }
+
+    .gallery__thumb {
+        width: 66px;
+    }
+
+    .key-specs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .panel {
+        width: 100%;
+    }
+
+    .footer__bottom {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* --- Телефон: щільні сітки замість «простирадла» з карток ---------------
+   Мета — щоб за один екран людина бачила кілька варіантів, а не одну
+   картку. Фото йдуть по два в ряд, каталог — по три, текстові картки
+   гортаються вбік із «підглядом» наступної.
+   ---------------------------------------------------------------------- */
+@media (max-width: 640px) {
+    /* Поля форм: iPhone збільшує масштаб, якщо шрифт поля менший за 16px */
+    .field__control {
+        font-size: 1rem;
+    }
+
+    /* Кнопки героя тягнуться на ширину рядка: великі цілі під палець */
+    .hero__cta .btn,
+    .page-hero__cta .btn {
+        flex: 1 1 auto;
+        justify-content: center;
+    }
+
+    /* Меню сайту */
+    .page-nav__head {
+        padding: 14px var(--gutter);
+    }
+
+    .page-nav__body {
+        padding: 6px var(--gutter);
+    }
+
+    .page-nav__foot {
+        padding: 16px var(--gutter) calc(16px + env(safe-area-inset-bottom, 0px));
+        gap: 12px;
+    }
+
+    /* Розділи в меню щільніші: пояснення в один рядок */
+    .menu .page-nav__item {
+        padding: 8px;
+        gap: 12px;
+    }
+
+    .menu .page-nav__icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .menu .page-nav__desc {
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+    }
+
+    /* Фото: перше на всю ширину, два наступні — поруч */
+    .figure-stack {
+        gap: 10px;
+    }
+
+    .figure-stack figure {
+        border-radius: var(--r-sm);
+    }
+
+    .figure-stack img {
+        aspect-ratio: 1;
+    }
+
+    .figure-stack figure:first-child img {
+        aspect-ratio: 16 / 10;
+    }
+
+    /* Архітектурні стилі: 2 × 2 */
+    .styles-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .style-card {
+        min-height: 0;
+        aspect-ratio: 3 / 4;
+        border-radius: var(--r-md);
+    }
+
+    .style-card__body {
+        padding: 14px;
+        gap: 2px;
+    }
+
+    .style-card__name {
+        font-size: 1.05rem;
+    }
+
+    .style-card__tag {
+        display: none;
+    }
+
+    .style-card__more {
+        margin-top: 4px;
+        gap: 4px;
+        font-size: 0.625rem;
+        letter-spacing: 0.08em;
+    }
+
+    /* Каталог: три мініатюри в ряд — фото, назва, ціна (від 3 проєктів; менше — повні картки).
+       Решта характеристик — у картці проєкту, яка відкривається дотиком. */
+    #catalogGrid:not(.is-few) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px 8px;
+    }
+
+    #catalogGrid:not(.is-few) .project-card {
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        overflow: visible;
+    }
+
+    #catalogGrid:not(.is-few) .project-card__media {
+        aspect-ratio: 1;
+        border-radius: var(--r-sm);
+    }
+
+    #catalogGrid:not(.is-few) .project-card__tags,
+    #catalogGrid:not(.is-few) .project-card__count,
+    #catalogGrid:not(.is-few) .project-card__subtitle,
+    #catalogGrid:not(.is-few) .spec-row,
+    #catalogGrid:not(.is-few) .project-card__features,
+    #catalogGrid:not(.is-few) .project-card__more,
+    #catalogGrid:not(.is-few) .project-card__price-kind {
+        display: none;
+    }
+
+    #catalogGrid:not(.is-few) .project-card__body {
+        padding: 7px 1px 0;
+        gap: 0;
+    }
+
+    #catalogGrid:not(.is-few) .project-card__name {
+        min-height: 2.5em;
+        overflow-wrap: anywhere;
+        font-size: 0.6875rem;
+        letter-spacing: 0;
+        line-height: 1.25;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        overflow: hidden;
+    }
+
+    #catalogGrid:not(.is-few) .project-card__foot {
+        margin: 2px 1px 0;
+        padding: 0;
+        border: 0;
+    }
+
+    #catalogGrid:not(.is-few) .project-card__price-value {
+        font-size: 0.75rem;
+    }
+
+    #catalogGrid:not(.is-few) .project-card__price-value::before {
+        content: "від ";
+        font-family: var(--font-body);
+        font-weight: 600;
+        color: var(--text-subtle);
+    }
+
+    /* Приклади проєктів на «Громадам»: дві картки в ряд */
+    .catalog-grid:not(#catalogGrid) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .catalog-grid:not(#catalogGrid) .project-card {
+        border-radius: var(--r-md);
+    }
+
+    .catalog-grid:not(#catalogGrid) .project-card__tags {
+        inset: 8px 8px auto 8px;
+        gap: 4px;
+    }
+
+    .catalog-grid:not(#catalogGrid) .badge {
+        padding: 3px 7px;
+        font-size: 0.5625rem;
+        letter-spacing: 0.05em;
+    }
+
+    .catalog-grid:not(#catalogGrid) .project-card__body {
+        padding: 12px;
+        gap: 8px;
+    }
+
+    .catalog-grid:not(#catalogGrid) .project-card__name {
+        overflow-wrap: anywhere;
+        font-size: 0.8125rem;
+        line-height: 1.25;
+    }
+
+    .catalog-grid:not(#catalogGrid) .project-card__subtitle {
+        margin-top: -4px;
+        font-size: 0.75rem;
+        line-height: 1.4;
+    }
+
+    .catalog-grid:not(#catalogGrid) .project-card__foot {
+        margin: 0 12px;
+        padding: 10px 0 12px;
+    }
+
+    .catalog-grid:not(#catalogGrid) .project-card__more {
+        font-size: 0.6875rem;
+        letter-spacing: 0.04em;
+    }
+
+    /* «Оберіть свою ситуацію»: усі п'ять варіантів видно одразу */
+    .router {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .router__card {
+        padding: 16px 14px 14px;
+        gap: 6px;
+        border-radius: var(--r-md);
+    }
+
+    .router__card--wide {
+        grid-column: 1 / -1;
+    }
+
+    .router__title {
+        font-size: 0.9375rem;
+    }
+
+    .router__text {
+        font-size: 0.8125rem;
+        line-height: 1.45;
+    }
+
+    .router__cta {
+        display: block;
+        font-size: 0.8125rem;
+    }
+
+    .router__cta svg {
+        display: inline-block;
+        margin-left: 2px;
+        vertical-align: -3px;
+    }
+
+    /* Короткі показники: по два в ряд */
+    .trust {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .trust__item {
+        padding: 14px;
+        gap: 6px;
+    }
+
+    .trust__value {
+        overflow-wrap: anywhere;
+        font-size: 1.05rem;
+    }
+
+    .trust--words .trust__value {
+        font-size: min(1.05rem, 9.5cqi);
+    }
+
+    /* Текстові картки — смугою, яку гортають пальцем.
+       Смуга виходить за поля контейнера до країв екрана, як у застосунках. */
+    .tiles,
+    .competence,
+    .funding,
+    .h-kb {
+        grid-template-columns: none;
+        grid-auto-flow: column;
+        grid-auto-columns: 82%;
+        gap: 12px;
+        margin-inline: calc(-1 * var(--gutter));
+        padding: 4px var(--gutter) 14px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: var(--gutter);
+        scrollbar-width: none;
+    }
+
+    .tiles::-webkit-scrollbar,
+    .competence::-webkit-scrollbar,
+    .funding::-webkit-scrollbar,
+    .h-kb::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tiles > *,
+    .competence > *,
+    .funding > *,
+    .h-kb > * {
+        scroll-snap-align: start;
+    }
+
+    /* У смузі картки з'являються разом, а не по одній під час гортання вбік */
+    .tiles > [data-reveal],
+    .competence > [data-reveal],
+    .funding > [data-reveal],
+    .h-kb > [data-reveal] {
+        opacity: 1;
+        transform: none;
+    }
+
+    /* Кроки: номер ліворуч від назви — компактна стрічка етапів */
+    .process__item {
+        grid-template-columns: 2rem minmax(0, 1fr);
+        gap: 0 10px;
+        padding-block: 14px;
+    }
+
+    .process__title {
+        font-size: 1rem;
+    }
+
+    .process__text {
+        font-size: 0.875rem;
+        line-height: 1.5;
+    }
+
+    /* Пігулки щільніші: короткі стають по дві-три в рядок */
+    .eco-grid {
+        gap: 6px;
+    }
+
+    .eco-grid li {
+        gap: 7px;
+        padding: 7px 12px;
+        font-size: 0.84rem;
+    }
+
+    /* Підвал: напрями й соцмережі поруч, контакти — на всю ширину */
+    .footer__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 32px 16px;
+    }
+
+    .footer__grid > :nth-child(1) {
+        grid-column: 1 / -1;
+    }
+
+    .footer__grid > :nth-child(3) {
+        grid-column: 1 / -1;
+        order: 3;
+    }
+
+    .footer__grid > :nth-child(4) {
+        order: 2;
+    }
+}
+
+
+/* --- Дуже вузькі екрани (≤ 400px) ------------------------------------- */
+@media (max-width: 400px) {
+    .logo__name {
+        font-size: 0.78rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .header__actions .btn span {
+        display: none;
+    }
+
+    .header__actions .btn {
+        width: 42px;
+        padding: 0;
+    }
+
+    .hero__stats {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .key-specs {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* --- Пристрої без наведення (тач) ------------------------------------- */
+@media (hover: none) {
+    .project-card:hover {
+        transform: none;
+        box-shadow: var(--shadow-sm);
+    }
+
+    .project-card:hover .project-card__media img {
+        transform: none;
+    }
+
+    .tile:hover,
+    .funding__card:hover,
+    .pill:hover {
+        transform: none;
+    }
+
+    .btn:hover {
+        transform: none;
+    }
+
+    /* Сірий спалах iOS при дотику замінюємо власним відгуком */
+    a,
+    button,
+    [role="button"] {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Активний стан замість наведення */
+    .project-card:active,
+    .router__card:active,
+    .style-card:active,
+    .tile:active {
+        transform: scale(0.985);
+    }
+
+    .page-nav__item:active,
+    .menu__toggle:active {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .btn:active {
+        opacity: 0.85;
+    }
+}
+
+/* --- Друк -------------------------------------------------------------- */
+@media print {
+    .header,
+    .page-nav,
+    .panel,
+    .panel-backdrop,
+    .modal,
+    .ticker,
+    .scroll-progress {
+        display: none !important;
+    }
+
+    body {
+        background: #fff;
+        color: #000;
+    }
+}

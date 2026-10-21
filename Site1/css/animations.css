@@ -1,0 +1,160 @@
+/* =====================================================================
+   Анімації: поява при прокручуванні, лічильники, декоративний рух
+   ===================================================================== */
+
+/* --- Поява елементів ------------------------------------------------ */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(26px);
+    transition: opacity var(--t-reveal) var(--ease-out),
+                transform var(--t-reveal) var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+}
+
+[data-reveal="left"] {
+    transform: translateX(-32px);
+}
+
+[data-reveal="right"] {
+    transform: translateX(32px);
+}
+
+[data-reveal="scale"] {
+    transform: scale(0.96);
+}
+
+[data-reveal="mask"] {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 1100ms var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0 0 0 0);
+    will-change: auto;
+}
+
+/* Поява зображень із «шторкою» */
+.reveal-img {
+    position: relative;
+    overflow: hidden;
+}
+
+.reveal-img > img {
+    transform: scale(1.12);
+    transition: transform 1400ms var(--ease-out);
+}
+
+.reveal-img.is-visible > img {
+    transform: scale(1);
+}
+
+/* --- Кейфрейми ------------------------------------------------------- */
+@keyframes ticker-scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes shimmer {
+    from {
+        background-position: 140% 0;
+    }
+
+    to {
+        background-position: -40% 0;
+    }
+}
+
+@keyframes float-arrow {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(7px);
+    }
+}
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.hero__scroll svg {
+    animation: float-arrow 2.6s var(--ease-in-out) infinite;
+}
+
+/* Поява карток каталогу після фільтрації */
+.catalog-grid > .project-card {
+    animation: fade-up 620ms var(--ease-out) both;
+    animation-delay: calc(var(--card-index, 0) * 55ms);
+}
+
+/* Спінер завантаження */
+.spinner {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    animation: spin 700ms linear infinite;
+    flex: none;
+}
+
+/* --- Повага до налаштувань доступності --------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    [data-reveal] {
+        opacity: 1;
+        transform: none;
+        clip-path: none;
+    }
+
+    .reveal-img > img {
+        transform: none;
+    }
+
+    .ticker__track {
+        animation: none;
+    }
+
+    .hero__media img {
+        transform: none !important;
+    }
+}

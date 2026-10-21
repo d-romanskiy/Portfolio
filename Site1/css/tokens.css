@@ -1,0 +1,125 @@
+/* =====================================================================
+   REFRAME GROUP — дизайн-токени
+   Палітра побудована на кольорах друкованого каталогу:
+   вершкове тло, теплий графіт і бурштиновий акцент.
+   ===================================================================== */
+
+:root {
+    /* --- Кольори: нейтральні --- */
+    --ink-900: #14130f;
+    --ink-800: #1e1c17;
+    --ink-700: #2a2721;
+    --ink-600: #3d3930;
+    --ink-500: #5a554a;
+    --ink-400: #6e6759; /* приглушений текст: 5.3:1 на --bg, 4.9:1 на --bg-alt */
+    --ink-300: #a49c8d;
+
+    --sand-50: #fbf8f3;
+    --sand-100: #f5efe6;
+    --sand-200: #ece4d7;
+    --sand-300: #ddd3c2;
+    --sand-400: #c9bda7;
+
+    --white: #ffffff;
+
+    /* --- Кольори: акцент --- */
+    --amber-300: #f7bc77;
+    --amber-400: #f5a54b;
+    --amber-500: #e8933a;
+    --amber-600: #cc7a22;
+    --amber-700: #a05713; /* акцентний текст: 5.1:1 на --bg, 4.8:1 на --bg-alt */
+
+    --green-500: #6f8f52;
+
+    /* --- Семантика: світла тема сторінки --- */
+    --bg: var(--sand-50);
+    --bg-alt: var(--sand-100);
+    --bg-sunken: var(--sand-200);
+    --surface: var(--white);
+    --text: var(--ink-800);
+    --text-muted: var(--ink-500);
+    --text-subtle: var(--ink-400);
+    --border: rgba(20, 19, 15, 0.12);
+    --border-strong: rgba(20, 19, 15, 0.22);
+    --accent: var(--amber-500);
+    --accent-text: var(--amber-700);
+    --focus: #1b6ef3;
+
+    /* --- Семантика: темні секції --- */
+    --dark-bg: var(--ink-900);
+    --dark-surface: rgba(255, 255, 255, 0.045);
+    --dark-text: #f3ede2;
+    --dark-muted: rgba(243, 237, 226, 0.68);
+    --dark-border: rgba(243, 237, 226, 0.16);
+
+    /* --- Типографіка --- */
+    --font-display: "Unbounded", "Manrope", system-ui, "Segoe UI", sans-serif;
+    --font-body: "Manrope", system-ui, "Segoe UI", Roboto, sans-serif;
+
+    --fs-hero: clamp(2.5rem, 7.6vw, 6rem);
+    --fs-h2: clamp(1.9rem, 4.4vw, 3.4rem);
+    --fs-h3: clamp(1.3rem, 2.2vw, 1.85rem);
+    --fs-h4: clamp(1.05rem, 1.5vw, 1.25rem);
+    --fs-lead: clamp(1.05rem, 1.5vw, 1.3rem);
+    --fs-body: 1rem;
+    --fs-sm: 0.9375rem;
+    --fs-xs: 0.8125rem;
+    --fs-eyebrow: 0.75rem;
+
+    --lh-tight: 1.06;
+    --lh-snug: 1.25;
+    --lh-body: 1.65;
+
+    /* --- Розміри та відступи --- */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+    --space-8: 64px;
+    --space-9: 96px;
+    --space-10: 128px;
+
+    --section-y: clamp(72px, 9vw, 148px);
+    --gutter: clamp(20px, 4vw, 64px);
+    --container: 1320px;
+    --container-narrow: 980px;
+
+    /* --- Радіуси --- */
+    --r-xs: 6px;
+    --r-sm: 10px;
+    --r-md: 16px;
+    --r-lg: 24px;
+    --r-xl: 32px;
+    --r-pill: 999px;
+
+    /* --- Тіні --- */
+    --shadow-sm: 0 1px 2px rgba(20, 19, 15, 0.06), 0 2px 8px rgba(20, 19, 15, 0.04);
+    --shadow-md: 0 4px 12px rgba(20, 19, 15, 0.07), 0 12px 32px rgba(20, 19, 15, 0.07);
+    --shadow-lg: 0 12px 28px rgba(20, 19, 15, 0.10), 0 32px 72px rgba(20, 19, 15, 0.12);
+    --shadow-dark: 0 24px 64px rgba(0, 0, 0, 0.45);
+
+    /* --- Рух --- */
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --t-fast: 160ms;
+    --t-base: 280ms;
+    --t-slow: 640ms;
+    --t-reveal: 900ms;
+
+    /* --- Шари --- */
+    --z-header: 100;
+    --z-panel: 200;
+    --z-modal: 300;
+    --z-toast: 400;
+
+    --header-h: 76px;
+}
+
+@media (max-width: 760px) {
+    :root {
+        --header-h: 64px;
+    }
+}
