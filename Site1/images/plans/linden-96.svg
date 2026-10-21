@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 660" font-family="Manrope, Arial, sans-serif">
+  <!-- План LINDEN 96: 1 м = 50 px, будинок 12 × 8 м, тераса 6,6 × 2,5 м -->
+  <rect width="720" height="660" fill="#f6f1e8"/>
+
+  <!-- Тераса -->
+  <rect x="40" y="45" width="330" height="125" fill="#e9dcc6"/>
+  <g stroke="#d4c2a3" stroke-width="2">
+    <path d="M40 70h330M40 95h330M40 120h330M40 145h330"/>
+  </g>
+  <text x="205" y="105" text-anchor="middle" font-size="17" font-weight="700" fill="#3d3930">Тераса</text>
+  <text x="205" y="127" text-anchor="middle" font-size="14" fill="#6e6759">16,5 м²</text>
+
+  <!-- Приміщення -->
+  <g fill="#fffdf9">
+    <rect x="40" y="170" width="600" height="400"/>
+  </g>
+  <rect x="440" y="170" width="200" height="190" fill="#fbf4e8"/>
+  <rect x="440" y="430" width="200" height="140" fill="#fbf4e8"/>
+  <rect x="40" y="430" width="165" height="140" fill="#fbf4e8"/>
+  <rect x="205" y="430" width="95" height="140" fill="#eef3f5"/>
+  <rect x="530" y="360" width="110" height="70" fill="#eef3f5"/>
+
+  <!-- Внутрішні стіни -->
+  <g stroke="#3d3930" stroke-width="4" stroke-linecap="square">
+    <path d="M40 430H370M205 430v140M300 430v140M370 170v400M440 170v400M440 360h200M440 430h200M530 360v70"/>
+  </g>
+
+  <!-- Зовнішні стіни -->
+  <rect x="40" y="170" width="600" height="400" fill="none" stroke="#14130f" stroke-width="10"/>
+
+  <!-- Прорізи дверей (фон поверх стін) -->
+  <g stroke="#fffdf9" stroke-width="12">
+    <path d="M370 250v45M440 300v45M440 470v45M370 480v40M120 430h40M230 430h40M460 360h40M530 375v40"/>
+  </g>
+  <g stroke="#f6f1e8" stroke-width="14">
+    <path d="M385 570h40M150 170h110"/>
+  </g>
+
+  <!-- Розкриття дверей -->
+  <g fill="none" stroke="#a49c8d" stroke-width="1.6">
+    <path d="M370 250a45 45 0 0 1 45 45M370 295h45"/>
+    <path d="M440 300a45 45 0 0 0-45 45"/>
+    <path d="M440 470a45 45 0 0 0-45 45"/>
+    <path d="M370 480a40 40 0 0 1 40 40"/>
+    <path d="M120 430a40 40 0 0 0 40 40M120 430v40"/>
+    <path d="M230 430a40 40 0 0 0 40 40M230 430v40"/>
+    <path d="M460 360a40 40 0 0 0 40 40M460 360v40"/>
+    <path d="M385 570a40 40 0 0 1 40-40M425 570v-40"/>
+  </g>
+  <path d="M150 170h110" stroke="#7fa7b8" stroke-width="3"/>
+
+  <!-- Вікна -->
+  <g stroke="#7fa7b8" stroke-width="4">
+    <path d="M40 220v160M40 460v80M480 170h120M640 220v100M640 460v80M480 570h120M90 570h80"/>
+  </g>
+
+  <!-- Підписи -->
+  <g text-anchor="middle" fill="#14130f">
+    <text x="205" y="292" font-size="19" font-weight="700">Кухня-вітальня</text>
+    <text x="205" y="316" font-size="15" fill="#6e6759">34,3 м²</text>
+    <text x="405" y="392" font-size="13" font-weight="700" transform="rotate(-90 405 392)">Хол · 11,2 м²</text>
+    <text x="540" y="258" font-size="16" font-weight="700">Мастер-спальня</text>
+    <text x="540" y="280" font-size="14" fill="#6e6759">15,2 м²</text>
+    <text x="485" y="400" font-size="11" font-weight="700">Гардероб</text>
+    <text x="585" y="393" font-size="11" font-weight="700">Санвузол</text>
+    <text x="585" y="410" font-size="11" fill="#6e6759">3,1 м²</text>
+    <text x="540" y="497" font-size="16" font-weight="700">Дитяча</text>
+    <text x="540" y="519" font-size="14" fill="#6e6759">11,2 м²</text>
+    <text x="122" y="510" font-size="14" font-weight="700">Кабінет</text>
+    <text x="122" y="530" font-size="13" fill="#6e6759">9,2 м²</text>
+    <text x="252" y="510" font-size="12" font-weight="700">Санвузол</text>
+    <text x="252" y="528" font-size="12" fill="#6e6759">5,3 м²</text>
+    <text x="335" y="510" font-size="11" font-weight="700">Тех.</text>
+    <text x="335" y="526" font-size="11" fill="#6e6759">3,9 м²</text>
+    <text x="405" y="600" font-size="12" fill="#6e6759">вхід</text>
+  </g>
+
+  <!-- Розміри -->
+  <g stroke="#6e6759" stroke-width="1.4">
+    <path d="M40 615h600M40 607v16M640 607v16"/>
+    <path d="M680 170v400M672 170h16M672 570h16"/>
+  </g>
+  <text x="340" y="642" text-anchor="middle" font-size="14" fill="#3d3930">12,0 м</text>
+  <text x="702" y="375" text-anchor="middle" font-size="14" fill="#3d3930" transform="rotate(-90 702 375)">8,0 м</text>
+
+  <text x="390" y="80" font-size="22" font-weight="800" fill="#14130f">LINDEN 96</text>
+  <text x="390" y="106" font-size="14" fill="#6e6759">Загальна площа 96 м²</text>
+  <text x="390" y="128" font-size="14" fill="#6e6759">3 спальні · 2 санвузли</text>
+</svg>
